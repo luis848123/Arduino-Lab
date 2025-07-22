@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cables</title>
+   <link rel="icon" href="13.png" />
+  <link rel="stylesheet" href="1.5.css" />
+</head>
+<body>
+  <header class="header">
+    <a href="1.html" class="back">← Volver al inicio</a>
+    <h1>Cables</h1>
+    <a href="1.6.html" class="cart-link">🛒 Ver carrito</a>
+  </header>
+
+  <section class="product-grid">
+    <div class="product">
+      <img src="8.1.jpeg" alt="Cables Jumper Macho-Macho">
+      <h2>Cables Jumper Macho-Macho</h2>
+      <p>Ideal para conexiones rápidas en protoboard o Arduino. Paquete de 40 unidades.</p>
+      <span class="price">S/ 8.00</span>
+      <button class="buy-btn" onclick="addToCart('Cables Jumper Macho-Macho', 8.00, '8.1.jpeg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="8.2.jpeg" alt="Cables Jumper Hembra-Hembra">
+      <h2>Cables Jumper Hembra-Hembra</h2>
+      <p>Perfectos para conectar sensores o módulos. Incluye 40 cables variados.</p>
+      <span class="price">S/ 8.50</span>
+      <button class="buy-btn" onclick="addToCart('Cables Jumper Hembra-Hembra', 8.50, '8.2.jpeg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="8.3.jpeg" alt="Cable USB para Arduino">
+      <h2>Cable USB para Arduino</h2>
+      <p>Para cargar código y alimentar tu placa. Compatible con Arduino UNO y Mega.</p>
+      <span class="price">S/ 5.00</span>
+      <button class="buy-btn" onclick="addToCart('Cable USB para Arduino', 5.00, '8.3.jpeg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="8.4.jpg" alt="Cables Jumper Macho-Hembra">
+      <h2>Cables Jumper Macho-Hembra</h2>
+      <p>Conecta pines macho con pines hembra fácilmente. 40 unidades.</p>
+      <span class="price">S/ 8.00</span>
+      <button class="buy-btn" onclick="addToCart('Cables Jumper Macho-Hembra', 8.00, '8.4.jpg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="8.5.webp" alt="Cables con caimán">
+      <h2>Cables con caimán</h2>
+      <p>Ideales para pruebas rápidas y conexiones temporales. Pack de 10 unidades.</p>
+      <span class="price">S/ 7.00</span>
+      <button class="buy-btn" onclick="addToCart('Cables con caimán', 7.00, '8.5.webp')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="8.6.jpeg" alt="Cable Jack DC">
+      <h2>Cable Jack DC</h2>
+      <p>Conector jack de 5.5 mm ideal para módulos o fuentes externas. Longitud: 1m.</p>
+      <span class="price">S/ 4.00</span>
+      <button class="buy-btn" onclick="addToCart('Cable Jack DC', 4.00, '8.6.jpeg')">Comprar</button>
+    </div>
+  </section>
+
+  <script>
+    function addToCart(nombre, precio, imagen) {
+      const producto = { nombre, precio, imagen, cantidad: 1 };
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      const index = carrito.findIndex(p => p.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push(producto);
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert("Producto añadido al carrito");
+    }
+  </script>
+</body>
+</html>

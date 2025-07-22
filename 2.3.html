@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cursos Disponibles</title>
+   <link rel="icon" href="13.png" />
+  <link rel="stylesheet" href="1.4.css" />
+</head>
+<body>
+
+  <header class="header">
+    <h1>Cursos Disponibles</h1>
+    <a class="back" href="1.html">← Volver al inicio</a>
+    <a href="1.6.html" class="cart-link">🛒 Ver carrito</a>
+  </header>
+
+  <section class="product-grid">
+    <div class="product">
+      <img src="10.1.png" alt="Curso de Robótica" />
+      <h2>Curso de Robótica</h2>
+      <p>Aprende a programar robots desde cero con Arduino y sensores.</p>
+      <span class="price">S/ 80.00</span>
+      <button class="buy-btn" onclick="addToCart('Curso de Robótica', 80.00, '10.1.png')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="10.2.png" alt="Curso de Programación" />
+      <h2>Curso de Programación</h2>
+      <p>Desde lógica básica hasta desarrollo web con HTML, CSS y JS.</p>
+      <span class="price">S/ 90.00</span>
+      <button class="buy-btn" onclick="addToCart('Curso de Programación', 90.00, '10.2.png')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="10.3.png" alt="Curso de Electrónica" />
+      <h2>Curso de Electrónica</h2>
+      <p>Conoce el mundo de los circuitos, resistencias y proyectos prácticos.</p>
+      <span class="price">S/ 70.00</span>
+      <button class="buy-btn" onclick="addToCart('Curso de Electrónica', 70.00, '10.3.png')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="10.4.png" alt="Curso de Impresión 3D" />
+      <h2>Curso de Impresión 3D</h2>
+      <p>Modela y fabrica tus propios diseños con impresión 3D.</p>
+      <span class="price">S/ 100.00</span>
+      <button class="buy-btn" onclick="addToCart('Curso de Impresión 3D', 100.00, '10.4.png')">Comprar</button>
+    </div>
+  </section>
+
+  <script>
+    function addToCart(nombre, precio, imagen) {
+      const producto = { nombre, precio, imagen, cantidad: 1 };
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      const index = carrito.findIndex(p => p.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push(producto);
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert("Producto añadido al carrito");
+    }
+  </script>
+
+</body>
+</html>

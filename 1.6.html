@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrito de Compras</title>
+   <link rel="icon" href="13.png" />
+  <link rel="stylesheet" href="1.6.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="1.html" class="back">← Volver al inicio</a>
+    <h1>Carrito de Compras</h1>
+  </header>
+
+  <section class="cart">
+    <div id="cart-items"></div>
+
+    <div class="cart-total">
+      <strong>Total:</strong> S/ <span id="total">0.00</span>
+    </div>
+
+    <div class="cart-actions">
+      <button class="btn vaciar" onclick="vaciarCarrito()">🗑️ Vaciar carrito</button>
+      <button class="btn comprar" onclick="finalizarCompra()">✅ Finalizar compra</button>
+    </div>
+  </section>
+
+  <script>
+    function cargarCarrito() {
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      const contenedor = document.getElementById("cart-items");
+      const totalEl = document.getElementById("total");
+      contenedor.innerHTML = "";
+
+      if (carrito.length === 0) {
+        contenedor.innerHTML = "<p>No hay productos añadidos.</p>";
+        totalEl.textContent = "0.00";
+        return;
+      }
+
+      let total = 0;
+      carrito.forEach((producto, index) => {
+        const item = document.createElement("div");
+        item.classList.add("cart-item");
+        item.innerHTML = `
+          <img src="${producto.imagen}" alt="${producto.nombre}">
+          <div>
+            <h3>${producto.nombre}</h3>
+            <div class="quantity-control">
+              <button onclick="cambiarCantidad(${index}, -1)">−</button>
+              <span>${producto.cantidad}</span>
+              <button onclick="cambiarCantidad(${index}, 1)">+</button>
+            </div>
+            <p>Precio: S/ ${(producto.precio * producto.cantidad).toFixed(2)}</p>
+          </div>
+        `;
+        contenedor.appendChild(item);
+        total += producto.precio * producto.cantidad;
+      });
+
+      totalEl.textContent = total.toFixed(2);
+    }
+
+    function cambiarCantidad(index, cambio) {
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      if (!carrito[index]) return;
+      carrito[index].cantidad += cambio;
+      if (carrito[index].cantidad < 1) carrito[index].cantidad = 1;
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      cargarCarrito();
+    }
+
+    function vaciarCarrito() {
+      localStorage.removeItem("carrito");
+      cargarCarrito();
+    }
+
+    function finalizarCompra() {
+      const carrito = JSON.parse(localStorage.getItem("carrito"));
+      if (!carrito || carrito.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+      }
+
+      let mensaje = "¡Hola! Quiero comprar los siguientes productos:%0A";
+      carrito.forEach(producto => {
+        mensaje += `• ${producto.nombre} x${producto.cantidad} - S/ ${(producto.precio * producto.cantidad).toFixed(2)}%0A`;
+      });
+
+      const total = carrito.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
+      mensaje += `%0ATotal: S/ ${total.toFixed(2)}`;
+
+      // Tu número de WhatsApp (con código de país sin el "+")
+      const numeroWhatsApp = "51976781256";
+      const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+
+      // Redirigir a WhatsApp
+      window.location.href = url;
+
+      // Limpiar carrito
+      localStorage.removeItem("carrito");
+    }
+
+    cargarCarrito();
+  </script>
+
+</body>
+</html>

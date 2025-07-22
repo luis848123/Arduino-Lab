@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kits de Arduino</title>
+   <link rel="icon" href="13.png" />
+  <link rel="stylesheet" href="1.1.css" />
+</head>
+<body>
+
+  <header class="header">
+    <a href="1.html" class="back">← Volver al inicio</a>
+    <h1>Kits de Arduino</h1>
+    <a href="1.6.html" class="cart-link">🛒 Carrito de Compras</a>
+  </header>
+
+  <section class="product-grid">
+    <div class="product">
+      <img src="11.1.webp" alt="Kit de inicio Arduino multilingüe" />
+      <h2>Kit de inicio Arduino multilingüe</h2>
+      <p>Perfecto para principiantes: incluye placa UNO, LEDs, resistencias, cables y protoboard.</p>
+      <span class="price">S/ 89.90</span>
+      <button onclick="addToCart('Kit de inicio Arduino multilingüe', 89.90, '11.1.webp')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="11.2.webp" alt="Kit de inicio Arduino para el aula" />
+      <h2>Kit de inicio Arduino para el aula</h2>
+      <p>Diseñado para uso educativo con sensores básicos, pantalla LCD y servomotores.</p>
+      <span class="price">S/ 119.00</span>
+      <button onclick="addToCart('Kit de inicio Arduino para el aula', 119.00, '11.2.webp')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="11.3.webp" alt="Kit Arduino Conecta y Crea" />
+      <h2>Kit Arduino Conecta y Crea</h2>
+      <p>Incluye módulos Bluetooth, joystick, RFID, pantalla OLED y más accesorios avanzados.</p>
+      <span class="price">S/ 185.00</span>
+      <button onclick="addToCart('Kit Arduino Conecta y Crea', 185.00, '11.3.webp')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="11.4.webp" alt="Kit científico Arduino" />
+      <h2>Kit científico Arduino</h2>
+      <p>Ideal para experimentos escolares: sensores de temperatura, luz, humedad y actuadores.</p>
+      <span class="price">S/ 145.00</span>
+      <button onclick="addToCart('Kit científico Arduino', 145.00, '11.4.webp')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="11.5.webp" alt="Kit de sensores Arduino" />
+      <h2>Kit de sensores Arduino</h2>
+      <p>Contiene más de 35 sensores: movimiento, sonido, infrarrojo, gas, presión y más.</p>
+      <span class="price">S/ 135.00</span>
+      <button onclick="addToCart('Kit de sensores Arduino', 135.00, '11.5.webp')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="11.6.webp" alt="Kit de Arduino para estudiantes" />
+      <h2>Kit de Arduino para estudiantes</h2>
+      <p>Paquete completo con guía didáctica, sensores variados, servos y módulos inalámbricos.</p>
+      <span class="price">S/ 159.00</span>
+      <button onclick="addToCart('Kit de Arduino para estudiantes', 159.00, '11.6.webp')">Comprar</button>
+    </div>
+  </section>
+
+  <script>
+    function addToCart(nombre, precio, imagen) {
+      const producto = { nombre, precio, imagen, cantidad: 1 };
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      const index = carrito.findIndex(p => p.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push(producto);
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert("Producto añadido al carrito");
+    }
+  </script>
+
+</body>
+</html>

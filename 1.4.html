@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Componentes</title>
+   <link rel="icon" href="13.png" />
+  <link rel="stylesheet" href="1.4.css" />
+</head>
+<body>
+
+  <header class="header">
+    <a href="1.html" class="back">← Volver al inicio</a>
+    <h1>Componentes</h1>
+    <a href="1.6.html" class="cart-link">🛒 Ver carrito</a>
+  </header>
+
+  <section class="product-grid">
+
+    <div class="product">
+      <img src="7.1.jpg" alt="Protoboard" />
+      <h2>Protoboard 830 puntos</h2>
+      <p>Ideal para prototipado sin soldaduras.</p>
+      <span class="price">S/ 10.00</span>
+      <button class="buy-btn" onclick="addToCart('Protoboard 830 puntos', 10.00, '7.1.jpg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="7.2.jpeg" alt="Resistencias" />
+      <h2>Kit de resistencias</h2>
+      <p>Contiene resistencias de 220Ω, 1kΩ, 10kΩ y más.</p>
+      <span class="price">S/ 5.00</span>
+      <button class="buy-btn" onclick="addToCart('Kit de resistencias', 5.00, '7.2.jpeg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="7.3.webp" alt="LEDs" />
+      <h2>Kit de LEDs</h2>
+      <p>Colores: rojo, verde, azul, blanco y amarillo.</p>
+      <span class="price">S/ 4.00</span>
+      <button class="buy-btn" onclick="addToCart('Kit de LEDs', 4.00, '7.3.webp')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="7.4.jpeg" alt="Zumbador pasivo" />
+      <h2>Zumbador pasivo</h2>
+      <p>Ideal para emitir sonidos en proyectos Arduino.</p>
+      <span class="price">S/ 2.00</span>
+      <button class="buy-btn" onclick="addToCart('Zumbador pasivo', 2.00, '7.4.jpeg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="7.5.jpg" alt="Condensador" />
+      <h2>Condensadores (pack x5)</h2>
+      <p>Usados para filtrar y almacenar energía.</p>
+      <span class="price">S/ 2.00</span>
+      <button class="buy-btn" onclick="addToCart('Condensadores pack', 2.00, '7.5.jpg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="7.6.jpg" alt="Diodo rectificador" />
+      <h2>Diodo rectificador 1N4007</h2>
+      <p>Permite el paso de corriente en una sola dirección.</p>
+      <span class="price">S/ 1.00</span>
+      <button class="buy-btn" onclick="addToCart('Diodo rectificador 1N4007', 1.00, '7.6.jpg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="7.7.jpg" alt="Módulo relé" />
+      <h2>Módulo relé 1 canal</h2>
+      <p>Controla dispositivos de alto voltaje con Arduino.</p>
+      <span class="price">S/ 6.00</span>
+      <button class="buy-btn" onclick="addToCart('Módulo relé 1 canal', 6.00, '7.7.jpg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="7.9.jpeg" alt="Jumpers" />
+      <h2>Driver L298N</h2>
+      <p>Permite controlar motores DC o paso a paso con Arduino.</p>
+      <span class="price">S/ 3.00</span>
+      <button class="buy-btn" onclick="addToCart('Jumpers Macho-Macho', 3.00, '7.9.jpg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="7.8.jpeg" alt="Potenciómetro" />
+      <h2>Potenciómetro 10kΩ</h2>
+      <p>Control manual de señales, brillo o volumen.</p>
+      <span class="price">S/ 2.00</span>
+      <button class="buy-btn" onclick="addToCart('Potenciómetro 10k', 2.00, '7.8.jpg')">Comprar</button>
+    </div>
+
+  </section>
+
+  <script>
+    function addToCart(nombre, precio, imagen) {
+      const producto = { nombre, precio, imagen, cantidad: 1 };
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      const index = carrito.findIndex(p => p.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push(producto);
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert("Producto añadido al carrito");
+    }
+  </script>
+
+</body>
+</html>

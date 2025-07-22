@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reparación de Arduino</title>
+  <link rel="icon" href="13.png" />
+  <link rel="stylesheet" href="2.4.css"> <!-- Aquí va el CSS externo -->
+</head>
+<body>
+
+  <div class="header">
+    <a href="1.html" class="back">← Volver al inicio</a>
+    <h1>Servicio de Reparación de Arduino</h1>
+  </div>
+
+  <div class="product-grid">
+    <div class="product">
+      <img src="arduino.jpg" alt="Arduino dañado">
+      <h2>Revisión y reparación</h2>
+      <p>¿Tu Arduino no enciende o presenta fallas? Lo diagnosticamos y reparamos.</p>
+      <span class="price">Desde S/ 30</span>
+      <button class="btn-ir-formulario" onclick="mostrarFormulario()">Solicitar reparación</button>
+    </div>
+  </div>
+
+  <div id="formularioReparacion" class="formulario">
+    <h2>Formulario de Reparación</h2>
+    <form id="form-reparacion">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="problema">Describe el problema:</label>
+      <textarea id="problema" name="problema" rows="5" required></textarea>
+
+      <button type="submit">Enviar por WhatsApp</button>
+    </form>
+  </div>
+
+  <script>
+    function mostrarFormulario() {
+      document.getElementById('formularioReparacion').classList.add('mostrar');
+      document.getElementById('formularioReparacion').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('form-reparacion').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const problema = document.getElementById('problema').value.trim();
+
+      const mensaje = `Hola, soy ${nombre}.%0ATengo un problema con mi Arduino:%0A${problema}`;
+      const numero = "51976781256"; // Número con código de país sin el "+"
+      const url = `https://wa.me/${numero}?text=${mensaje}`;
+
+      window.open(url, '_blank');
+    });
+  </script>
+
+</body>
+</html>

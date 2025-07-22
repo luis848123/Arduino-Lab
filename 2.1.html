@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario de Contacto</title>
+  <link rel="icon" href="13.png" />
+  <link rel="stylesheet" href="2.1.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Asesoría</h1>
+    <a href="1.html" class="back">← Volver al inicio</a>
+  </header>
+
+  <section class="formulario">
+    <h2>Contáctanos</h2>
+    <form id="formulario-contacto">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required />
+
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+      <button type="submit">Enviar por WhatsApp</button>
+    </form>
+  </section>
+
+  <script>
+    document.getElementById('formulario-contacto').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const mensaje = document.getElementById('mensaje').value.trim();
+
+      const texto = `Hola, soy ${nombre}.%0AQuisiera asesoría sobre:%0A${mensaje}`;
+      const numero = "51976781256"; // Tu número con código de país sin el "+"
+      const url = `https://wa.me/${numero}?text=${texto}`;
+
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>

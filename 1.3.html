@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sensores Arduino</title>
+   <link rel="icon" href="13.png" />
+  <link rel="stylesheet" href="1.3.css" />
+</head>
+<body>
+
+  <header class="header">
+    <a href="1.html" class="back">← Volver al inicio</a>
+    <h1>Sensores Arduino</h1>
+    <a href="1.6.html" class="cart-link">🛒 Ver carrito</a>
+  </header>
+
+  <section class="product-grid">
+    <div class="product">
+      <img src="6.1.jpg" alt="Sensor ultrasónico HC-SR04" />
+      <h2>Sensor ultrasónico HC-SR04</h2>
+      <p>Permite medir distancias con precisión usando ultrasonido. Ideal para evitar obstáculos en robots.</p>
+      <span class="price">S/ 7.50</span>
+      <button class="buy-btn" onclick="addToCart('Sensor ultrasónico HC-SR04', 7.50, '6.1.jpg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="6.2.jpg" alt="Sensor de temperatura y humedad DHT11" />
+      <h2>Sensor de temperatura y humedad DHT11</h2>
+      <p>Sensor digital que mide temperatura ambiente y humedad relativa con buena precisión.</p>
+      <span class="price">S/ 6.00</span>
+      <button class="buy-btn" onclick="addToCart('Sensor de temperatura y humedad DHT11', 6.00, '6.2.jpg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="6.3.jpg" alt="Sensor de movimiento PIR" />
+      <h2>Sensor PIR de movimiento</h2>
+      <p>Detecta presencia mediante radiación infrarroja. Ideal para alarmas y sistemas de seguridad.</p>
+      <span class="price">S/ 7.00</span>
+      <button class="buy-btn" onclick="addToCart('Sensor PIR de movimiento', 7.00, '6.3.jpg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="6.5.jpg" alt="Sensor de sonido KY-038" />
+      <h2>Sensor de sonido KY-038</h2>
+      <p>Detecta sonidos mediante un micrófono. Muy útil para proyectos interactivos con Arduino.</p>
+      <span class="price">S/ 4.50</span>
+      <button class="buy-btn" onclick="addToCart('Sensor de sonido KY-038', 4.50, '6.5.jpg')">Comprar</button>
+    </div>
+
+    <div class="product">
+      <img src="6.6.jpg" alt="Sensor de gas MQ-2" />
+      <h2>Sensor de gas MQ-2</h2>
+      <p>Detecta gases como humo, propano y metano. Esencial para proyectos de seguridad ambiental.</p>
+      <span class="price">S/ 8.00</span>
+      <button class="buy-btn" onclick="addToCart('Sensor de gas MQ-2', 8.00, '6.6.jpg')">Comprar</button>
+    </div>
+  </section>
+
+  <script>
+    function addToCart(nombre, precio, imagen) {
+      const producto = { nombre, precio, imagen, cantidad: 1 };
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      const index = carrito.findIndex(p => p.nombre === nombre);
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push(producto);
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      alert("Producto añadido al carrito");
+    }
+  </script>
+
+</body>
+</html>

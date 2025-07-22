@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Servicio de Programación Arduino</title>
+  <link rel="stylesheet" href="2.5.css">
+  <link rel="icon" href="13.png" />
+</head>
+<body>
+
+  <div class="header">
+    <a href="1.html" class="back">← Volver al inicio</a>
+    <h1>Servicio de Programación Arduino</h1>
+  </div>
+
+  <div class="product-grid">
+    <div class="product">
+      <img src="12.png" alt="Programación de Arduino">
+      <h2>Programación personalizada</h2>
+      <p>Te ayudamos a programar tus proyectos con sensores, motores, pantallas, y más.</p>
+      <span class="price">Desde S/ 40</span>
+      <button class="btn-ir-formulario" onclick="mostrarFormulario()">Solicitar programación</button>
+    </div>
+  </div>
+
+  <div id="formularioProgramacion" class="formulario">
+    <h2>Formulario de Programación</h2>
+    <form id="form-programacion">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="detalles">¿Qué deseas programar?:</label>
+      <textarea id="detalles" name="detalles" rows="5" required></textarea>
+
+      <button type="submit">Enviar por WhatsApp</button>
+    </form>
+  </div>
+
+  <script>
+    function mostrarFormulario() {
+      document.getElementById('formularioProgramacion').classList.add('mostrar');
+      document.getElementById('formularioProgramacion').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('form-programacion').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const detalles = document.getElementById('detalles').value.trim();
+
+      const mensaje = `Hola, soy ${nombre}.%0ADeseo ayuda con la programación del siguiente proyecto:%0A${detalles}`;
+      const numero = "51976781256"; // Incluye el código de país sin el signo +
+      const url = `https://wa.me/${numero}?text=${mensaje}`;
+
+      window.open(url, '_blank');
+    });
+  </script>
+
+</body>
+</html>
